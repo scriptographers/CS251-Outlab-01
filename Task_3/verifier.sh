@@ -19,16 +19,27 @@ g++ ${cpp_file}
 # Compute the output of the code for each input file
 mkdir my_outputs
 cd inputs
-for input in *.in
-do
-    ../a.out < ${input} > ../my_outputs/${input%.in}.out
+for input in *.in; do
+    ../a.out <${input} >../my_outputs/${input%.in}.out
     # echo ../my_outputs/${input%.in}.out
 done
 # cd .. # cd -
 
-# Now, comparing with the true output
-for input in *.in
-do
+# Now, comparing with the true output and saving the feedback
+echo "Failed testcases are:" >../feedback.txt
+count=0
+for input in *.in; do
     difference=$(diff ../outputs/${input%.in}.out ../my_outputs/${input%.in}.out | wc -m)
-    echo ${difference}
+    if [ ${difference} -ne 0 ]; then
+        count=$((${count} + 1))
+        echo ${difference}
+        echo "${input%.in}" >>../feedback.txt
+    fi
 done
+
+# Giving out appropriate message
+if [ ${count} -eq 0 ]; then
+    echo "All testcases passed!"
+else
+    echo "Some testcases failed."
+fi
