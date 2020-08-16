@@ -1,5 +1,4 @@
-# CS251-Outlab-01
-Outlab 01 (CS251 Autumn 2020)
+# Outlab 01 (CS251 Autumn 2020)
 
-Given on: Saturday, 15th August  
-Deadline:
+Given on: 15th August (Saturday).  
+Deadline: 23:59, 23rd August (Sunday).
