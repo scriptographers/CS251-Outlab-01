@@ -9,7 +9,7 @@ url="$2"
 cut_dirs=$(($3 + 1))
 
 # Getting the test cases
-wget -r --no-parent --reject "index.html*" -nH --cut-dirs=${cut_dirs} ${url}
+wget -q -r --no-parent --reject "index.html*" -nH --cut-dirs=${cut_dirs} ${url}
 
 # Getting the cpp file and making the executable
 cp ${source_file} .
@@ -21,9 +21,7 @@ mkdir my_outputs
 cd inputs
 for input in *.in; do
     ../a.out <${input} >../my_outputs/${input%.in}.out
-    # echo ../my_outputs/${input%.in}.out
 done
-# cd .. # cd -
 
 # Now, comparing with the true output and saving the feedback
 echo "Failed testcases are:" >../feedback.txt
@@ -32,7 +30,6 @@ for input in *.in; do
     difference=$(diff ../outputs/${input%.in}.out ../my_outputs/${input%.in}.out | wc -m)
     if [ ${difference} -ne 0 ]; then
         count=$((${count} + 1))
-        echo ${difference}
         echo "${input%.in}" >>../feedback.txt
     fi
 done
