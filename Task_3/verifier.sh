@@ -24,4 +24,11 @@ do
     ../a.out < ${input} > ../my_outputs/${input%.in}.out
     # echo ../my_outputs/${input%.in}.out
 done
-cd .. # cd -
+# cd .. # cd -
+
+# Now, comparing with the true output
+for input in *.in
+do
+    difference=$(diff ../outputs/${input%.in}.out ../my_outputs/${input%.in}.out | wc -m)
+    echo ${difference}
+done
