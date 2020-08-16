@@ -15,3 +15,13 @@ wget -r --no-parent --reject "index.html*" -nH --cut-dirs=${cut_dirs} ${url}
 cp ${source_file} .
 cpp_file=$(basename "${source_file}")
 g++ ${cpp_file}
+
+# Compute the output of the code for each input file
+mkdir my_outputs
+cd inputs
+for input in *.in
+do
+    ../a.out < ${input} > ../my_outputs/${input%.in}.out
+    # echo ../my_outputs/${input%.in}.out
+done
+cd .. # cd -
