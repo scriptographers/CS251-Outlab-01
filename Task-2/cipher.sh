@@ -12,7 +12,7 @@ wget $URL -q -O encrypted.txt # -q hides the verbose present while running wget
 
 LOWER='abcdefghijklmnopqrstuvwxyz'
 SHIFT=1 # Specifies the Caeser shift
-E_LASTLINE=$( cat encrypted.txt | tail -1 ) # Stores the Encrypted Last Line, which is assumed to contain (encrypted) 'Queen', 'Mary', or 'Majesty'
+E_LASTLINE=$( cat encrypted.txt | tail -2 ) # Stores the Encrypted Last Line, which is assumed to contain (encrypted) 'Queen', 'Mary', or 'Majesty'
 
 while [ $SHIFT -le 25 ] # Brute-force attack on the last line
 do
@@ -28,7 +28,7 @@ do
 	ALPHABETS=$LOWER$UPPER # Entire english alphabet in both cases
 	TRANSLATION=$T_LOWER$T_UPPER # The entire translation
 	D_LASTLINE=$( echo $E_LASTLINE | tr $TRANSLATION $ALPHABETS ) # Decrypted Last Line
-	TREASON=$( echo $D_LASTLINE | egrep -i 'mary|queen|majesty' ) # Case-insensitive egrep search
+	TREASON=$( echo $D_LASTLINE | egrep -i 'queen|majesty' ) # Case-insensitive egrep search
 	if [ ${#TREASON} -gt 0 ] # We have found the right translation
 	then
 		break
