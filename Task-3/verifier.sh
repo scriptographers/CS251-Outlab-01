@@ -1,3 +1,7 @@
+#!/bin/bash
+
+# Task 3
+
 if [ $# -ne 3 ]; then # '$#' gives the number of command line args supplied
     echo 'Usage: ./verifier.sh <source file> <testcases url> <cut-dirs arg>'
     exit 1 # Exit if the number of arguments aren't 3.

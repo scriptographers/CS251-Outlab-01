@@ -11,7 +11,7 @@ then
 else
     SUM=0
     for (( i=1; i<=$N_ARGS; i++))
-    do 
+    do
         SUM=$(./sum.sh $SUM ${!i})
     done
     echo $SUM

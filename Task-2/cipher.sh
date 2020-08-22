@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Task 2
+
 if [ $# -eq 0 ]
 then
     echo "Usage: ./cipher.sh <url>"
@@ -39,7 +41,6 @@ done
 
 cat encrypted.txt | tr $TRANSLATION $ALPHABETS > deciphered.txt # Store the deciphered letter in 'deciphered.txt'
 
-echo "PS. Give me the names." | tr $ALPHABETS $TRANSLATION >> encrypted.txt # Encrypt and append the line to encrypted.txt 
+echo "PS. Give me the names." | tr $ALPHABETS $TRANSLATION >> encrypted.txt # Encrypt and append the line to encrypted.txt
 
 exit 0
-

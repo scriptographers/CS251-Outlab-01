@@ -1,3 +1,7 @@
+#!/bin/bash
+
+# Task 4
+
 # Create required base directories
 mkdir -p playlists albums
 
